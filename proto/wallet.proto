@@ -1,46 +1,57 @@
 syntax = "proto3";
 
-package auth;
+package wallet;
 
-service AuthService {
-  rpc Register (RegisterRequest) returns (RegisterResponse) {}
-  rpc Login (LoginRequest) returns (LoginResponse) {}
-  rpc Validate (ValidateRequest) returns (ValidateResponse) {}
+service WalletService {
+  rpc Create (CreateRequest) returns (CreateResponse) {}
+  rpc Credit (CreditRequest) returns (CreditResponse) {}
+  rpc Debit (DebitRequest) returns (DebitResponse) {}
+  rpc Details (DetailsRequest) returns (DetailsResponse) {}
 }
 
-// Register
-
-message RegisterRequest {
-  string email = 1;
-  string password = 2;
+// Create
+message CreateRequest {
+  int32 customer_id = 1;
+  int32 store_id = 2;
 }
 
-message RegisterResponse {
+message CreateResponse {
   int32 status = 1;
   repeated string error = 2;
 }
 
-// Login
-
-message LoginRequest {
-  string email = 1;
-  string password = 2;
+// Credit
+message CreditRequest {
+  int32 customer_id = 1;
+  int32 store_id = 2;
+  double amount = 3;
 }
 
-message LoginResponse {
+message CreditResponse {
   int32 status = 1;
   repeated string error = 2;
-  string token = 3;
 }
 
-// Validate
-
-message ValidateRequest {
-  string token = 1;
+// Debit
+message DebitRequest {
+  int32 customer_id = 1;
+  int32 store_id = 2;
+  double amount = 3;
 }
 
-message ValidateResponse {
+message DebitResponse {
   int32 status = 1;
   repeated string error = 2;
-  int32 userId = 3;
+}
+
+// Details
+message DetailsRequest {
+  int32 customer_id = 1;
+  int32 store_id = 2;
+}
+
+message DetailsResponse {
+  int32 status = 1;
+  repeated string error = 2;
+  int32 balance = 3;
 }
