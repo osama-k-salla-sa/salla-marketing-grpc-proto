@@ -3,54 +3,54 @@ syntax = "proto3";
 package wallet;
 
 service WalletService {
-  rpc createWallet (CreateRequest) returns (CreateResponse) {}
-  rpc creditWallet (CreditRequest) returns (CreditResponse) {}
-  rpc debitWallet (DebitRequest) returns (DebitResponse) {}
-  rpc getWalletDetails (DetailsRequest) returns (DetailsResponse) {}
+  rpc createWallet (CreateWalletRequest) returns (CreateWalletResponse) {}
+  rpc creditWallet (CreditWalletRequest) returns (CreditWalletResponse) {}
+  rpc debitWallet (DebitWalletRequest) returns (DebitWalletResponse) {}
+  rpc findOne (FindOneRequest) returns (FindOneResponse) {}
 }
 
-// Create
-message CreateRequest {
+// Create Wallet
+message CreateWalletRequest {
   int32 customerId = 1;
   int32 storeId = 2;
 }
 
-message CreateResponse {
+message CreateWalletResponse {
   int32 status = 1;
   repeated string error = 2;
 }
 
-// Credit
-message CreditRequest {
+// Credit Wallet
+message CreditWalletRequest {
   int32 customerId = 1;
   int32 storeId = 2;
   double amount = 3;
 }
 
-message CreditResponse {
+message CreditWalletResponse {
   int32 status = 1;
   repeated string error = 2;
 }
 
-// Debit
-message DebitRequest {
+// Debit Wallet
+message DebitWalletRequest {
   int32 customerId = 1;
   int32 storeId = 2;
   double amount = 3;
 }
 
-message DebitResponse {
+message DebitWalletResponse {
   int32 status = 1;
   repeated string error = 2;
 }
 
-// Details
-message DetailsRequest {
+// Find One
+message FindOneRequest {
   int32 customerId = 1;
   int32 storeId = 2;
 }
 
-message DetailsResponse {
+message FindOneResponse {
   int32 status = 1;
   repeated string error = 2;
   int32 balance = 3;
